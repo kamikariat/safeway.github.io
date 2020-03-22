@@ -16,6 +16,7 @@ firebase.analytics();
 
 // Reference shoppers collection
 var shoppersRef = firebase.database().ref('shoppers');
+var volunteersRef = firebase.database().ref('volunteers');
 
 // Listen for form submit
 document.getElementById('shopperForm').addEventListener('submit', submitForm);
