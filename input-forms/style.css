@@ -9,7 +9,53 @@ body{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding:1em;
 }
-
+.fit {display: flex;}
+.account-type, .gender {
+  margin: 15px 0;
+  display: flex;
+  }
+  input[type=radio] {
+  display: none;
+  }
+  label#icon {
+  margin: 0;
+  border-radius: 5px 0 0 5px;
+  }
+  label.radio {
+  position: relative;
+  display: inline-block;
+  padding-top: 1px;
+  margin-right: 20px;
+  text-indent: 30px;
+  overflow: visible;
+  cursor: pointer;
+  }
+  label.radio:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1c87c9;
+  }
+  label.radio:after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 4px;
+  top: 8px;
+  left: 4px;
+  border: 3px solid #fff;
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg);
+  opacity: 0;
+  }
+  input[type=radio]:checked + label:after {
+  opacity: 1;
+  }
 .container{
   max-width:1170px;
   margin-left:auto;
@@ -97,11 +143,18 @@ ul{
   margin-bottom:10px;
   display:none;
 }
+.alertF{
+  text-align: center;
+  padding:10px;
+  background:#ff0000;
+  color:#fff;
+  margin-bottom:10px;
+  display:none;
+}
 
 /* LARGE SCREENS */
 @media(min-width:700px){
   .wrapper{
-    display: grid;
     grid-template-columns: 1fr 2fr;
   }
 

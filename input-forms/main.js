@@ -24,25 +24,38 @@ document.getElementById('shopperForm').addEventListener('submit', submitForm);
 function submitForm(e){
   e.preventDefault();
 
-  // Get values
-  var name = getInputVal('name');
-  var email = getInputVal('email');
-  var phone = getInputVal('phone');
-  var message = getInputVal('message');
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    var al = document.getElementById('report');
+    al.classList.remove('alertF');
+    al.classList.add('alert');
+    al.innerHTML = "You have been added, wait to recieve an email.";
+    // Get values
+    var name = getInputVal('name');
+    var email = getInputVal('email');
+    var phone = getInputVal('phone');
+    var message = getInputVal('message');
 
-  // Save message
-  saveShopper(name, email, phone, message);
+    // Save message
+    saveShopper(name, email, phone, message);
 
-  // Show alert
-  document.querySelector('.alert').style.display = 'block';
+    // Show alert
+    document.querySelector('.alert').style.display = 'block';
 
-  // Hide alert after 3 seconds
-  setTimeout(function(){
-    document.querySelector('.alert').style.display = 'none';
-  },3000);
+    // Hide alert after 3 seconds
+    setTimeout(function(){
+      document.querySelector('.alert').style.display = 'none';
+    },3000);
 
-  // Clear form
-  document.getElementById('shopperForm').reset();
+    // Clear form
+    document.getElementById('shopperForm').reset();
+  } else { 
+    var al = document.getElementById('report');
+    al.classList.add('alertF');
+    al.classList.remove('alert');
+    al.innerHTML = "Location Failed, please try again.";
+  }
+  
 }
 
 // Function to get get form values
