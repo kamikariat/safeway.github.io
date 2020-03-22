@@ -3,8 +3,8 @@
 }
 
 body{
-  background:#92bde7;
-  color:#485e74;
+  background:#55c36c;
+  color: #32373e;
   line-height:1.6;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding:1em;
@@ -38,7 +38,7 @@ body{
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #1c87c9;
+  background: #202a30;
   }
   label.radio:after {
   content: "";
@@ -119,11 +119,11 @@ ul{
 .contact form button, .contact form input, .contact form textarea{
   width:100%;
   padding:1em;
-  border:1px solid #c9e6ff;
+  border:1px solid #305f88;
 }
 
 .contact form button{
-  background:#c9e6ff;
+  background: #5bb06d;
   border:0;
   text-transform: uppercase;
 }
@@ -146,7 +146,7 @@ ul{
 .alertF{
   text-align: center;
   padding:10px;
-  background:#ff0000;
+  background:#abb744;
   color:#fff;
   margin-bottom:10px;
   display:none;
