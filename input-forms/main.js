@@ -35,10 +35,8 @@ function submitForm(e){
       var message = getInputVal('message');
       var long = pos.coords.longitude;
       var lat = pos.coords.latitude;
-
       // Save message
       saveShopper(name, email, phone, message, long, lat);
-
       // Clear form
       document.getElementById('shopperForm').reset();
     }, function(error) {
@@ -85,7 +83,6 @@ function doAlert(al, msg, f){
   }
   // Show alert
   al.style.display = 'block';
-
   // Hide alert after 3 seconds
   setTimeout(function(){
     al.style.display = 'none';
