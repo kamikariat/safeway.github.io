@@ -27,7 +27,7 @@ function submitForm(e){
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(pos){
       var al = document.getElementById('report');
-      doAlert(al, "You have been added, wait to recieve an email.", flase);
+      doAlert(al, "You have been added, wait to recieve an email.", false);
       // Get values
       var name = getInputVal('name');
       var email = getInputVal('email');
