@@ -27,22 +27,36 @@ function submitForm(e){
   if (navigator.geolocation) {
     //why are you not updating plz....
     navigator.geolocation.getCurrentPosition(function(pos){
-      var x = document.getElementById('plop');
-      x.innerHTML = pos.coords.latitude;
+      var al = document.getElementById('report');
+      al.classList.remove('alertF');
+      al.classList.add('alert');
+      al.innerHTML = "You have been added, wait to recieve an email.";
+      // Get values
+      var name = getInputVal('name');
+      var email = getInputVal('email');
+      var phone = getInputVal('phone');
+      var message = pos.coords.latitude;
+
+      // Save message
+      saveShopper(name, email, phone, message);
+
+      // Show alert
+      document.querySelector('.alert').style.display = 'block';
+
+      // Hide alert after 3 seconds
+      setTimeout(function(){
+        document.querySelector('.alert').style.display = 'none';
+      },3000);
+
+      // Clear form
+      document.getElementById('shopperForm').reset();
     });
+    
+  } else { 
     var al = document.getElementById('report');
-    al.classList.remove('alertF');
-    al.classList.add('alert');
-    al.innerHTML = "You have been added, wait to recieve an email.";
-    // Get values
-    var name = getInputVal('name');
-    var email = getInputVal('email');
-    var phone = getInputVal('phone');
-    var message = getInputVal('message');
-
-    // Save message
-    saveShopper(name, email, phone, message);
-
+    al.classList.add('alertF');
+    al.classList.remove('alert');
+    al.innerHTML = "Location Failed, please try again.";
     // Show alert
     document.querySelector('.alert').style.display = 'block';
 
@@ -50,15 +64,8 @@ function submitForm(e){
     setTimeout(function(){
       document.querySelector('.alert').style.display = 'none';
     },3000);
-
-    // Clear form
-    document.getElementById('shopperForm').reset();
-  } else { 
-    var al = document.getElementById('report');
-    al.classList.add('alertF');
-    al.classList.remove('alert');
-    al.innerHTML = "Location Failed, please try again.";
   }
+
   
 }
 
