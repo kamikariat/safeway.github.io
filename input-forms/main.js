@@ -25,7 +25,10 @@ function submitForm(e){
   e.preventDefault();
 
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var x = document.getElementById('plop');
+      x.innerHTML = pos.coords.latitude;
+    });
     var al = document.getElementById('report');
     al.classList.remove('alertF');
     al.classList.add('alert');
@@ -58,10 +61,6 @@ function submitForm(e){
   
 }
 
-function showPosition(pos){
-  var x = document.getElementById('plop');
-  x.innerHTML = pos.coords.latitude;
-}
 // Function to get get form values
 function getInputVal(id){
   return document.getElementById(id).value;
