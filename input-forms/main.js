@@ -57,7 +57,7 @@ function submitForm(e){
       x.classList.remove('alert');
       switch(error.code) {
         case error.PERMISSION_DENIED:
-          x.innerHTML = "User denied the request for Geolocation."
+          x.innerHTML = "User denied the request for Geolocation. Try it on a computer instead."
           break;
         case error.POSITION_UNAVAILABLE:
           x.innerHTML = "Location information is unavailable."
@@ -100,14 +100,27 @@ function getInputVal(id){
 
 // Save shopper to firebase
 function saveShopper(name, email, phone, message, long, lat){
-  var newShopperRef = shoppersRef.push();
-  newShopperRef.set({
-    name: name,
-    email:email,
-    phone:phone,
-    message:message,
-    long:long,
-    lat:lat
+  if (document.getElementById('radioOne').checked) {
+    var newShopperRef = shoppersRef.push();
+    newShopperRef.set({
+      name: name,
+      email:email,
+      phone:phone,
+      message:message,
+      long:long,
+      lat:lat
 
-  });
+    });
+  } else {
+    var newVolunteerRef = volunteersRef.push();
+    newVolunteerRef.set({
+      name: name,
+      email:email,
+      phone:phone,
+      message:message,
+      long:long,
+      lat:lat
+
+    });
+  }
 }
