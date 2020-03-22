@@ -129,7 +129,7 @@ ul{
 }
 
 .contact form button:hover,.contact form button:focus{
-  background:#92bde7;
+  background:#5bb06d;
   color:#fff;
   outline:0;
   transition: background-color 2s ease-out;
@@ -146,7 +146,7 @@ ul{
 .alertF{
   text-align: center;
   padding:10px;
-  background:#abb744;
+  background:#b74944;
   color:#fff;
   margin-bottom:10px;
   display:none;
