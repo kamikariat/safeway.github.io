@@ -58,6 +58,10 @@ function submitForm(e){
   
 }
 
+function showPosition(pos){
+  var x = document.getElementById('plop');
+  x.innerHTML = pos.coords.latitude;
+}
 // Function to get get form values
 function getInputVal(id){
   return document.getElementById(id).value;
