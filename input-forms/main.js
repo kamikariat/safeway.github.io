@@ -41,11 +41,11 @@ function submitForm(e){
       saveShopper(name, email, phone, message, long, lat);
 
       // Show alert
-      document.querySelector('.alert').style.display = 'block';
+      al.style.display = 'block';
 
       // Hide alert after 3 seconds
       setTimeout(function(){
-        document.querySelector('.alert').style.display = 'none';
+        al.style.display = 'none';
       },3000);
 
       // Clear form
@@ -69,11 +69,11 @@ function submitForm(e){
           break;
       }
       // Show alert
-      document.querySelector('.alert').style.display = 'block';
+      x.style.display = 'block';
 
       // Hide alert after 3 seconds
       setTimeout(function(){
-        document.querySelector('.alert').style.display = 'none';
+        x.style.display = 'none';
       },3000);
     });
     
@@ -83,11 +83,11 @@ function submitForm(e){
     al.classList.remove('alert');
     al.innerHTML = "Location Failed, please try again.";
     // Show alert
-    document.querySelector('.alert').style.display = 'block';
+    al.style.display = 'block';
 
     // Hide alert after 3 seconds
     setTimeout(function(){
-      document.querySelector('.alert').style.display = 'none';
+      al.style.display = 'none';
     },3000);
   }
 }
