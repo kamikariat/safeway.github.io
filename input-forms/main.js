@@ -27,9 +27,7 @@ function submitForm(e){
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(pos){
       var al = document.getElementById('report');
-      al.classList.remove('alertF');
-      al.classList.add('alert');
-      al.innerHTML = "You have been added, wait to recieve an email.";
+      doAlert(al, "You have been added, wait to recieve an email.", flase);
       // Get values
       var name = getInputVal('name');
       var email = getInputVal('email');
@@ -41,61 +39,57 @@ function submitForm(e){
       // Save message
       saveShopper(name, email, phone, message, long, lat);
 
-      // Show alert
-      al.style.display = 'block';
-
-      // Hide alert after 3 seconds
-      setTimeout(function(){
-        al.style.display = 'none';
-      },3000);
-
       // Clear form
       document.getElementById('shopperForm').reset();
     }, function(error) {
       var x = document.getElementById('report');
-      x.classList.add('alertF');
-      x.classList.remove('alert');
+      var msg = "";
       switch(error.code) {
         case error.PERMISSION_DENIED:
-          x.innerHTML = "User denied the request for Geolocation. Try it on a computer instead."
+          msg = "User denied the request for Geolocation. Try it on a computer instead."
           break;
         case error.POSITION_UNAVAILABLE:
-          x.innerHTML = "Location information is unavailable."
+          msg = "Location information is unavailable."
           break;
         case error.TIMEOUT:
-          x.innerHTML = "The request to get user location timed out."
+          msg = "The request to get user location timed out."
           break;
         case error.UNKNOWN_ERROR:
-          x.innerHTML = "An unknown error occurred."
+          msg = "An unknown error occurred."
           break;
       }
-      // Show alert
-      x.style.display = 'block';
-
-      // Hide alert after 3 seconds
-      setTimeout(function(){
-        x.style.display = 'none';
-      },3000);
+      doAlert(x, msg, true);
     });
     
   } else { 
     var al = document.getElementById('report');
-    al.classList.add('alertF');
-    al.classList.remove('alert');
-    al.innerHTML = "Location Failed, please try again.";
-    // Show alert
-    al.style.display = 'block';
-
-    // Hide alert after 3 seconds
-    setTimeout(function(){
-      al.style.display = 'none';
-    },3000);
+    doAlert(al, "Location Failed, please try again.", true);
   }
 }
 
 // Function to get get form values
 function getInputVal(id){
   return document.getElementById(id).value;
+}
+
+//function to do the timed alert with a message
+function doAlert(al, msg, f){
+  if(!f){
+    al.classList.remove('alertF');
+    al.classList.add('alert');
+    al.innerHTML = msg;
+  } else {
+    al.classList.add('alertF');
+    al.classList.remove('alert');
+    al.innerHTML = msg;
+  }
+  // Show alert
+  al.style.display = 'block';
+
+  // Hide alert after 3 seconds
+  setTimeout(function(){
+    al.style.display = 'none';
+  },3000);
 }
 
 // Save shopper to firebase
