@@ -25,6 +25,7 @@ function submitForm(e){
   e.preventDefault();
 
   if (navigator.geolocation) {
+    //why are you not updating plz....
     navigator.geolocation.getCurrentPosition(function(pos){
       var x = document.getElementById('plop');
       x.innerHTML = pos.coords.latitude;
