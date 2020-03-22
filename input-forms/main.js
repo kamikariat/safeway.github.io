@@ -23,9 +23,7 @@ document.getElementById('shopperForm').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
-
   if (navigator.geolocation) {
-    //why are you not updating plz....
     navigator.geolocation.getCurrentPosition(function(pos){
       var al = document.getElementById('report');
       al.classList.remove('alertF');
@@ -35,10 +33,12 @@ function submitForm(e){
       var name = getInputVal('name');
       var email = getInputVal('email');
       var phone = getInputVal('phone');
-      var message = pos.coords.latitude;
+      var message = getInputVal('message');
+      var long = pos.coords.longitude;
+      var lat = pos.coords.latitude;
 
       // Save message
-      saveShopper(name, email, phone, message);
+      saveShopper(name, email, phone, message, long, lat);
 
       // Show alert
       document.querySelector('.alert').style.display = 'block';
@@ -50,6 +50,31 @@ function submitForm(e){
 
       // Clear form
       document.getElementById('shopperForm').reset();
+    }, function(error) {
+      var x = document.getElementById('report');
+      x.classList.add('alertF');
+      x.classList.remove('alert');
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "User denied the request for Geolocation."
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Location information is unavailable."
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "The request to get user location timed out."
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "An unknown error occurred."
+          break;
+      }
+      // Show alert
+      document.querySelector('.alert').style.display = 'block';
+
+      // Hide alert after 3 seconds
+      setTimeout(function(){
+        document.querySelector('.alert').style.display = 'none';
+      },3000);
     });
     
   } else { 
@@ -65,8 +90,6 @@ function submitForm(e){
       document.querySelector('.alert').style.display = 'none';
     },3000);
   }
-
-  
 }
 
 // Function to get get form values
@@ -75,12 +98,15 @@ function getInputVal(id){
 }
 
 // Save shopper to firebase
-function saveShopper(name, email, phone, message){
+function saveShopper(name, email, phone, message, long, lat){
   var newShopperRef = shoppersRef.push();
   newShopperRef.set({
     name: name,
     email:email,
     phone:phone,
-    message:message
+    message:message,
+    long:long,
+    lat:lat
+
   });
 }
