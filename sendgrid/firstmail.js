@@ -2,18 +2,19 @@
 // https://github.com/sendgrid/sendgrid-nodejs
 const sgMail = require('@sendgrid/mail');
 //process.env.SENDGRID_API_KEY
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 sgMail.setSubstitutionWrappers("{{", "}}");
 
 const dynamic_data = {
   volName: 'Tony Kam',
   volEmail: 'tony.shek.kam@gmail.com',
-  userName: 'Tony Kam',
-  userEmail: 't.kam@berkeley.edu'
+  userName: 'Aravind R',
+  userEmail: 'aravind00r@berkeley.edu'
 
 }
 
 // WORKING CODE BELOW
+
 const msgVolunteer = {
   to: dynamic_data.volEmail,
   from: 'safewayvolunteer@gmail.com',
