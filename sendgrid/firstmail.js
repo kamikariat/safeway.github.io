@@ -2,43 +2,44 @@
 // https://github.com/sendgrid/sendgrid-nodejs
 const sgMail = require('@sendgrid/mail');
 //process.env.SENDGRID_API_KEY
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey('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');
 sgMail.setSubstitutionWrappers("{{", "}}");
 
-const dynamic_data = {
+const sampleData = {
   volName: 'Tony Kam',
   volEmail: 'tony.shek.kam@gmail.com',
   userName: 'Aravind R',
   userEmail: 'aravind00r@berkeley.edu'
 
 }
+function sendEmail(dynamic_data) {
+  const msgVolunteer = {
+    to: dynamic_data.volEmail,
+    from: 'safewayvolunteer@gmail.com',
+    templateId: 'd-f1e47756dd5b4db98006da04fa47c7be', //template on sendgrid
+    dynamic_template_data: {
+      volName: dynamic_data.volName,
+      userName: dynamic_data.userName,
+      userEmail: dynamic_data.userEmail,
+    }
+  };
+  sgMail.send(msgVolunteer);
 
-// WORKING CODE BELOW
+  const msgUser = {
+    to: dynamic_data.userEmail,
+    from: 'safewayvolunteer@gmail.com',
+    templateId: 'd-26d1a25c60e546a3a027ebe9f9b4e7f6', //template on sendgrid
+    dynamic_template_data: {
+      userName: dynamic_data.userName,
+      volName: dynamic_data.volName,
+      volEmail: dynamic_data.volEmail,
+    }
+  };
 
-const msgVolunteer = {
-  to: dynamic_data.volEmail,
-  from: 'safewayvolunteer@gmail.com',
-  templateId: 'd-f1e47756dd5b4db98006da04fa47c7be', //template on sendgrid
-  dynamic_template_data: {
-    volName: dynamic_data.volName,
-    userName: dynamic_data.userName,
-    userEmail: dynamic_data.userEmail,
-  }
-};
-sgMail.send(msgVolunteer);
+  sgMail.send(msgUser);
+}
 
-const msgUser = {
-  to: dynamic_data.userEmail,
-  from: 'safewayvolunteer@gmail.com',
-  templateId: 'd-26d1a25c60e546a3a027ebe9f9b4e7f6', //template on sendgrid
-  dynamic_template_data: {
-    userName: dynamic_data.userName,
-    volName: dynamic_data.volName,
-    volEmail: dynamic_data.volEmail,
-  }
-};
-
-sgMail.send(msgUser);
+sendEmail(sampleData);
 
 //
 //Handlebar testing
