@@ -1,4 +1,4 @@
 # safeway_repo
 
 #Resources and Sources:
-https://github.com/bradtraversy/firebasecontact
+#1. https://github.com/bradtraversy/firebasecontact
