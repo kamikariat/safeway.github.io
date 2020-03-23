@@ -1,5 +1,5 @@
-import * as functions from 'firebase-functions';
-import * as firebase from 'firebase';
+import * as functions from 'firebase-functions'
+import * as firebase from 'firebase'
 
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database()
