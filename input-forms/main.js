@@ -1,5 +1,14 @@
-
 // Webapp's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyC8sXhNBEyApJLXS2FAemaXYO5aN38JuBM",
+  authDomain: "safeway-271821.firebaseapp.com",
+  databaseURL: "https://safeway-271821.firebaseio.com",
+  projectId: "safeway-271821",
+  storageBucket: "safeway-271821.appspot.com",
+  messagingSenderId: "1009881777935",
+  appId: "1:1009881777935:web:61d38faf9e352dc989e07a",
+  measurementId: "G-ZEVFFKFKYG"
+};
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
